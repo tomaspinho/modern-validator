@@ -30,3 +30,18 @@ const isEqualToStoredNumber = async value => {
   else throw "Value is not equal to two";
 }
 ```
+
+A `validator` is a function returned by `modern-validator` when called with a `schema` object. Example:
+
+```
+const mv = require('modern-validator');
+
+const higherThanZero = async val => { if (val >= 0) return; else throw "Number not higher than zero."; }
+
+const schema = {
+  price: higherThanZero
+};
+
+const validator = mv(schema);
+
+```
