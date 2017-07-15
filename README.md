@@ -45,3 +45,18 @@ const schema = {
 const validator = mv(schema);
 
 ```
+
+A `validation` is an object that maps the properties in the schema, to the error `strings` produced by the `predicates`, if any. It's thrown if an object does not pass validation. Example:
+
+```
+# From code above...
+
+try {
+  validator(-1);
+  # any subsequent code
+} catch (v) {
+  # v = {
+  #   price: "Number not higher than zero." 
+  # }
+}
+```
