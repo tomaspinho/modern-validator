@@ -5,6 +5,7 @@
 ## Model
 
 A `schema` is an object that maps values (property names) to predicates.
+
 A `predicate` is a function that receives a value and returns a `Promise` which resolves if the validation passes or fails with an error `string` if the validation fails. Examples:
 
 ```
