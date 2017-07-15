@@ -4,7 +4,7 @@
 
 ## Model
 
-A `schema` is an object that maps values (property names) to predicates.
+A `schema` is an object that maps values (property names) to predicates (or `arrays` of predicates).
 
 A `predicate` is a function that receives a value and returns a `Promise` which resolves if the validation passes or fails with an error `string` if the validation fails. Examples:
 
@@ -46,7 +46,7 @@ const validator = mv(schema);
 
 ```
 
-A `validation` is an object that maps the properties in the schema, to the error `strings` produced by the `predicates`, if any. It's thrown if an object does not pass validation. Example:
+A `validation` is an object that maps the properties in the schema, to the error `strings` produced by the `predicates` (`array` of `strings` if an `array` of `predicates` was specified), if any. It's thrown if an object does not pass validation. Example:
 
 ```javascript
 # From code above...
