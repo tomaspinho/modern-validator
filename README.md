@@ -55,10 +55,20 @@ try {
   await validator(-1);
   // any subsequent code
 } catch (v) {
- /* 
- * v = {
- *    price: "Number not higher than zero." 
- * } 
+ /*
+ *  v = ValidationError {
+ *    message: "Modern Validator encountered validation error(s).",
+ *    validation: {
+ *      price: "Number not higher than zero."
+ *    }
+ *  }
  */
 }
 ```
+
+## TODO
+
+- Implement nested validators, that is, allow predicates to be validators themselves;
+- Implement utils bag with:
+  - `sync/true/false predicate` to `async/return/throw predicate` wrapper;
+
