@@ -52,7 +52,9 @@ A `validation` is an object that maps the properties in the schema, to the error
 // From code above...
 
 try {
-  await validator(-1);
+  await validator({
+    price: -1
+  });
   // any subsequent code
 } catch (v) {
  /*
