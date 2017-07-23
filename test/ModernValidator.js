@@ -46,18 +46,26 @@ describe('ModernValidator', () => {
     });
 
     it('It should throw when a validation does not pass (1/1)', () => {
-        const validator = ModernValidator(schema3);
+        const validator = ModernValidator(schema1);
         return expect(validator({
             key1: 2
-        })).to.eventually.be.rejectedWith(ValidationError);
+        }))
+        .to.eventually.be.rejectedWith(ValidationError)
+        .and.have.property('validation').deep.equal({
+            key1: "Value is different than 1."
+        });
     });
 
     it('It should throw when a validation does not pass (1/2)', () => {
-        const validator = ModernValidator(schema3);
+        const validator = ModernValidator(schema2);
         return expect(validator({
             key1: 2
         ,   key2: 2
-        })).to.eventually.be.rejectedWith(ValidationError);
+        }))
+        .to.eventually.be.rejectedWith(ValidationError)
+        .and.have.property('validation').deep.equal({
+            key1: "Value is different than 1."
+        });
     });
 
     it('It should throw when a validation does not pass (1/3)', () => {
@@ -66,6 +74,24 @@ describe('ModernValidator', () => {
             key1: 2
         ,   key2: 2
         ,   key3: 3
-        })).to.eventually.be.rejectedWith(ValidationError);
+        }))
+        .to.eventually.be.rejectedWith(ValidationError)
+        .and.have.property('validation').deep.equal({
+            key1: "Value is different than 1."
+        });
+    });
+
+    it('It should throw when more than a validation do not pass (2/3)', () => {
+        const validator = ModernValidator(schema3);
+        return expect(validator({
+            key1: 2
+        ,   key2: 3
+        ,   key3: 3
+        }))
+        .to.eventually.be.rejectedWith(ValidationError)
+        .and.have.property('validation').deep.equal({
+            key1: "Value is different than 1."
+        ,   key2: "Value is different than 2."
+        });
     });
 });

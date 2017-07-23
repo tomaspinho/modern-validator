@@ -11,15 +11,15 @@ module.exports = schema => async object => {
         const predicate = schema[k];
         const value = object[k];
         // Promise.resolves converts a non-bluebird promise into one
-        return Promise.all([k, Promise.resolve(predicate(value))]);
+        return Promise.all([k, Promise.resolve(predicate(value)).reflect()]);
     });
 
     let shouldThrow = false;
 
-    const results = await Promise.all(promises.map(p => p.reflect()))
-        .then(promises => promises.map(p => {
+    const results = await Promise.all(promises)
+        .then(promises => promises.map(([k, p]) => {
             shouldThrow = shouldThrow || !p.isFulfilled();
-            const [k, v] = p.isFulfilled() ? p.value() : p.reason();
+            const v = p.isFulfilled() ? p.value() : p.reason();
             return v ? {[k]: v} : {};
         }));
 
