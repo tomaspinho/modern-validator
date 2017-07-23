@@ -1,0 +1,39 @@
+{
+  "name": "modern-validator",
+  "version": "0.0.1",
+  "description": "A modern functional asynchronous validator for JavaScript objects.",
+  "main": "src/ModernValidator.js",
+  "scripts": {
+    "test": "mocha",
+    "testw": "mocha -w",
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomaspinho/modern-validator.git"
+  },
+  "keywords": [
+    "validator",
+    "async",
+    "functional"
+  ],
+  "author": {
+    "name": "Tomás Pinho",
+    "email": "me@tomaspinho.com",
+    "url": "https://tomaspinho.com/"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tomaspinho/modern-validator/issues"
+  },
+  "homepage": "https://github.com/tomaspinho/modern-validator#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0"
+  },
+  "devDependencies": {
+    "chai": "^4.1.0",
+    "chai-as-promised": "^7.1.1",
+    "istanbul": "^1.1.0-alpha.1",
+    "mocha": "^3.4.2"
+  }
+}
