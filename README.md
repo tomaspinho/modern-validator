@@ -6,7 +6,7 @@
 
 A `schema` is an object that maps values (property names) to predicates (or `arrays` of predicates).
 
-A `predicate` is a function that receives a value and returns a `Promise` which resolves if the validation passes or fails with an error `string` if the validation fails. Examples:
+A `predicate` is a function that receives a value and returns a `Promise` which resolves to a _falsy_ value if the validation passes or fails with an error `string` if the validation fails. Examples:
 
 ```javascript
 function isEqualToOne(value) {
@@ -31,7 +31,7 @@ const isEqualToStoredNumber = async value => {
 }
 ```
 
-A `validator` is a function returned by `modern-validator` when called with a `schema` object. Example:
+A `validator` is a function returned by `modern-validator` when called with a `schema` object. It throws a `ValidationError` when any of the values fail validation and returns `undefined` otherwise. Example:
 
 ```javascript
 const mv = require('modern-validator');
@@ -46,7 +46,7 @@ const validator = mv(schema);
 
 ```
 
-A `validation` is an object that maps the properties in the schema, to the error `strings` produced by the `predicates` (`array` of `strings` if an `array` of `predicates` was specified), if any. It's thrown if an object does not pass validation. Example:
+A `validation` is an object that maps the properties in the schema, to the error `strings` produced by the `predicates` (`array` of `strings` if an `array` of `predicates` was specified), if any. It's thrown (inside a `ValidationError`) if an object does not pass validation. Example:
 
 ```javascript
 // From code above...
