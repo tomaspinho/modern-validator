@@ -25,9 +25,6 @@ class ValidationError extends Error {
     toString() {
         return `${this.constructor.name}: ${ValidationError.message}`;
     };
-
-    // We don't want to capture the Stack, no useful information there
-    captureStackTrace () {}
 }
 
 ValidationError.message = "Modern Validator encountered validation error(s).";
