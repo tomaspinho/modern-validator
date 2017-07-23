@@ -2,7 +2,28 @@ const Promise = require('bluebird');
 
 const ValidationError = require('./ValidationError');
 
+/**
+ * Predicate type used in ModernValidator
+ * @callback predicate
+ * @param {*} value Value to which to apply the predicate
+ * @return {undefined} Returns undefined if the predicate passes
+ * @throws {string} Throws a string if the predicate fails, indicating the error
+ */
+
+/**
+ * The main function of the module
+ * @function ModernValidator
+ * @param {Object.<string, predicate>} schema Maps keys to predicates
+ * @return {validator} The validator for a given schema
+ */
 module.exports = schema => async object => {
+
+    /**
+     * @function validator
+     * @param {Object.<string, *>} object Object to validate
+     * @return {undefined} Returns undefined if the validation passes
+     * @throws {ValidationError} An error that wraps the validation errors for each key
+     */
 
     const schemaKeys = Object.keys(schema);
 

@@ -1,5 +1,10 @@
 class ValidationError extends Error {
 
+    /**
+     * Creates a new ValidationError.
+     * @class ValidationError
+     * @param {Object.<string, string>} validation Maps keys to their errors while validating.
+     */
     constructor(validation) {
         super(ValidationError.message);
         this.validation = validation;
