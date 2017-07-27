@@ -1,6 +1,6 @@
 # modern-validator
 
-`modern-validator` is a modern (node.js > 8.0) asynchronous functional validator for JavaScript objects. Intended for use with objects representing HTTP request bodies in node.js web frameworks.
+`modern-validator` is a modern (node.js > 8.0) asynchronous nestable functional validator for JavaScript objects. Intended for use with objects representing HTTP request bodies in node.js web frameworks.
 
 ## Model
 
@@ -68,10 +68,18 @@ try {
 }
 ```
 
+`modern-validator` is nestable in itself, which means the following is a perfectly valid construct:
+
+```javascript
+const validator = ModernValidator({
+  key1: ModernValidator({
+    key1: somePredicate
+  })
+});
+```
+
 ## TODO
 
-- Implement nested validators, that is, allow predicates to be validators themselves;
-  - Validators have the same return nothing, throw on error semantics. Just unpack the ValidationError for nested validators, capturing `e.validation` instead.
 - Implement utils bag with:
   - `sync/true/false predicate` to `async/return/throw predicate` wrapper;
 

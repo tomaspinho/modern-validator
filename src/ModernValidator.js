@@ -41,7 +41,9 @@ module.exports = schema => async object => {
         .then(promises => promises.map(([k, p]) => {
             shouldThrow = shouldThrow || !p.isFulfilled();
             const v = p.isFulfilled() ? p.value() : p.reason();
-            return v ? {[k]: v} : {};
+            // If a value exists (is a error string or a ValidationError), returns it (or the validation)
+            // otherwise, return empty object to be compatible with the reduction
+            return v ? {[k]: v.validation ? v.validation : v} : {};
         }));
 
     if (shouldThrow) throw new ValidationError(

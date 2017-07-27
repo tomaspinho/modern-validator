@@ -94,4 +94,78 @@ describe('ModernValidator', () => {
         ,   key2: "Value is different than 2."
         });
     });
+
+    it('It should support 1 level of nested validators (all pass)', () => {
+        const validator = ModernValidator(Object.assign({}, schema1, {
+            key2: ModernValidator(schema1)
+        }));
+
+        return expect(validator({
+            key1: 1
+        ,   key2: {
+                key1: 1
+            }
+        })).to.eventually.equal(undefined);
+    });
+
+    it('It should support 1 level of nested validators (fail)', () => {
+        const validator = ModernValidator(Object.assign({}, schema1, {
+            key2: ModernValidator(schema1)
+        }));
+
+        return expect(validator({
+            key1: 1
+        ,   key2: {
+                key1: 2
+            }
+        }))
+        .to.eventually.be.rejectedWith(ValidationError)
+        .and.have.property('validation').deep.equal({
+            key2: {
+                key1: "Value is different than 1."
+            }
+        });
+    });
+
+    it('It should support 2 levels of nested validators (all pass)', () => {
+        const validator = ModernValidator(Object.assign({}, schema1, {
+            key2: ModernValidator({
+                key1: ModernValidator(schema1)
+            })
+        }));
+
+        return expect(validator({
+            key1: 1
+        ,   key2: {
+                key1: {
+                    key1: 1
+                }
+            }
+        })).to.eventually.equal(undefined);
+    });
+
+    it('It should support 2 levels of nested validators (fail)', () => {
+        const validator = ModernValidator(Object.assign({}, schema1, {
+            key2: ModernValidator({
+                key1: ModernValidator(schema1)
+            })
+        }));
+
+        return expect(validator({
+            key1: 1
+        ,   key2: {
+                key1: {
+                    key1: 2
+                }
+            }
+        }))
+        .to.eventually.be.rejectedWith(ValidationError)
+        .and.have.property('validation').deep.equal({
+            key2: {
+                key1: {
+                    key1: "Value is different than 1."
+                }
+            }
+        });
+    });
 });
