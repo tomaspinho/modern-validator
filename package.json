@@ -6,7 +6,9 @@
   "scripts": {
     "test": "mocha",
     "testw": "mocha -w",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000"
+    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000",
+    "cover": "npm run coverage",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "repository": {
     "type": "git",
@@ -33,7 +35,9 @@
   "devDependencies": {
     "chai": "^4.1.0",
     "chai-as-promised": "^7.1.1",
+    "coveralls": "^2.13.1",
     "istanbul": "^1.1.0-alpha.1",
-    "mocha": "^3.4.2"
+    "mocha": "^3.4.2",
+    "mocha-lcov-reporter": "^1.3.0"
   }
 }
