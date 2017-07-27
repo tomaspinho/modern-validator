@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha",
     "testw": "mocha -w",
-    "coverage": "./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha -- --ui bdd -R spec -t 5000",
+    "coverage": "istanbul cover _mocha",
     "cover": "npm run coverage",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
