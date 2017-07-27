@@ -1,4 +1,4 @@
-# modern-validator [![Build Status](https://travis-ci.org/tomaspinho/modern-validator.svg?branch=master)](https://travis-ci.org/tomaspinho/modern-validator)
+# modern-validator [![Build Status](https://travis-ci.org/tomaspinho/modern-validator.svg?branch=master)](https://travis-ci.org/tomaspinho/modern-validator) [![Coverage Status](https://coveralls.io/repos/github/tomaspinho/modern-validator/badge.svg?branch=master)](https://coveralls.io/github/tomaspinho/modern-validator?branch=master)
 
 `modern-validator` is a modern (node.js > 8.0) asynchronous nestable functional validator for JavaScript objects. Intended for use with objects representing HTTP request bodies in node.js web frameworks.
 
