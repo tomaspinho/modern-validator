@@ -2,6 +2,10 @@
 
 `modern-validator` is a modern (node.js > 8.0) asynchronous nestable functional validator for JavaScript objects. Intended for use with objects representing HTTP request bodies in node.js web frameworks.
 
+## Installation
+
+  npm i modern-validator
+
 ## Model
 
 A `schema` is an object that maps values (property names) to predicates (or `arrays` of predicates).
