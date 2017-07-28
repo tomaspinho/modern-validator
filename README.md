@@ -4,7 +4,7 @@
 
 ## Installation
 
-  npm i modern-validator
+    npm i modern-validator
 
 ## Model
 
